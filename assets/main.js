@@ -15,10 +15,10 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
     // aggiungiamo la nostra card con markup
     const markup = 
     `
-        <div class="col col-md-6 col-lg-4 polaroid">
+        <div class="col-12 col-md-6 col-lg-4 polaroid">
           <div class="card col p-3 rounded-0">
             <div class="photo">
-              <img style="width: 15%;" class="position-absolute top-5 start-50 translate-middle"
+              <img style="width: 10%;" class="position-absolute top-0 start-50 translate-middle"
                 src="https://www.onlygfx.com/wp-content/uploads/2022/03/red-circle-round-3d-button-1.png" alt="">
               <img src='${pictures.url}'
                 class="img-fluid mb-3" alt="">
