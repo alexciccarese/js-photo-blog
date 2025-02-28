@@ -20,11 +20,11 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
             <div class="photo">
               <img style="width: 15%;" class="position-absolute top-5 start-50 translate-middle"
                 src="https://www.onlygfx.com/wp-content/uploads/2022/03/red-circle-round-3d-button-1.png" alt="">
-              <img src="https://www.thekurzweillibrary.com/images/Naam-Limits-of-Earth-Part1-001-earth-600x600.jpg"
+              <img src='${pictures.url}'
                 class="img-fluid mb-3" alt="">
             </div>
-            <p class="date m-0">Lorem ipsum</p>
-            <h4 class="title">TITLE</h4>
+            <p class="date m-0">${pictures.date}</p>
+            <h4 class="title">${pictures.title}</h4>
           </div>
         </div>
           `
