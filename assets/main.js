@@ -1,20 +1,22 @@
 const polaroidEl = document.querySelector('.polaroid')
+const overlayEl = document.querySelector('.overlay')
+const btnEl = document.querySelector('.btn')
 
 fetch('https://lanciweb.github.io/demo/api/pictures/')
-.then(response => response.json())
-.then(pictures => {
+  .then(response => response.json())
+  .then(pictures => {
 
-  const cardContent = pictures
-  console.log(cardContent);
-  
+    const cardContent = pictures
+    console.log(cardContent);
 
-  //prendiamo tutti gli elementi dell'oggetto
-  cardContent.forEach(pictures => {
-    console.log(pictures);
 
-    // aggiungiamo la nostra card con markup
-    const markup = 
-    `
+    //prendiamo tutti gli elementi dell'oggetto
+    cardContent.forEach(pictures => {
+      console.log(pictures);
+      
+      // aggiungiamo la nostra card con markup
+      const markup =
+        `
         <div class="col-12 col-md-6 col-lg-4 polaroid">
           <div class="card col p-3 rounded-0">
             <div class="photo">
@@ -29,8 +31,20 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
         </div>
           `
 
-         polaroidEl.insertAdjacentHTML('beforeend', markup)
-          
-  });
-})
-.catch(error => console.error("Error:", error))
+      polaroidEl.insertAdjacentHTML('beforeend', markup)
+    });
+
+
+    // quando clicchiamo la card si apre l'overlay dell'IMG
+    polaroidEl.addEventListener('click', function() {
+      overlayEl.classList.remove('d-none')
+    })
+
+    // al click del bottone si chiude l'overlay
+    btnEl.addEventListener('click', function() {
+      overlayEl.classList.add('d-none')
+    })
+
+
+  })
+  .catch(error => console.error("Error:", error))
