@@ -10,11 +10,10 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
     const cardContent = pictures
     console.log(cardContent);
 
-
-    //prendiamo tutti gli elementi dell'oggetto
-    cardContent.forEach(pictures => {
+    // prendiamo tutti gli elementi dell'oggetto
+    cardContent.forEach((pictures, index) => {
       const image = pictures.url
-      console.log(pictures);
+      console.log(pictures, index);
 
       // aggiungiamo la nostra card con markup
       const markup =
@@ -25,27 +24,30 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
               <img style="width: 10%;" class="position-absolute top-0 start-50 translate-middle"
                 src="https://www.onlygfx.com/wp-content/uploads/2022/03/red-circle-round-3d-button-1.png" alt="">
               <img src='${image}'
-                class="img-fluid mb-3" alt="">
+                class="polaroid-image img-fluid mb-3" alt="">
             </div>
             <p class="date m-0">${pictures.date}</p>
             <h4 class="title">${pictures.title}</h4>
           </div>
         </div>
-          `
+        `;
       polaroidEl.insertAdjacentHTML('beforeend', markup)
+    })
 
-      const markup_overlay =
-      `
-      <img class="mt-4 mb-4 col-12 col-lg-9" src="${image}" alt="">
-      `
-      overlayContentEl.insertAdjacentHTML('beforeend', markup_overlay)
-
-    });
+    // selezioniamo tutte le card create
+    const imageEl = document.querySelectorAll('.polaroid-image')
 
 
-    // quando clicchiamo la card si apre l'overlay dell'IMG
-    polaroidEl.addEventListener('click', function () {
-      overlayEl.classList.remove('d-none')
+    // aggiungiamo il listener per l'overlay
+    imageEl.forEach((image, index) => {
+      image.addEventListener('click', function () {
+        const imgSelect = pictures[index].url
+
+        //agggiungiamo l'immagine precisa dall'index
+        imgSrc = `<img class="mt-4 mb-4 col-12 col-lg-9" src="${imgSelect}" alt="">`
+        overlayContentEl.insertAdjacentHTML('beforeend', imgSrc)
+        overlayEl.classList.remove('d-none')
+      })
     })
 
     // al click del bottone si chiude l'overlay
@@ -53,8 +55,5 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
       overlayEl.classList.add('d-none')
     })
 
-    
-
-
   })
-  .catch(error => console.error("Error:", error))
+  .catch(error => console.error("Error:", error));
