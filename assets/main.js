@@ -43,6 +43,12 @@ fetch('https://lanciweb.github.io/demo/api/pictures/')
       image.addEventListener('click', function () {
         const imgSelect = pictures[index].url
 
+        //ripuliamo l'immagine precedente qualora ci fosse
+        const oldImg = overlayContentEl.querySelector('img')
+        if (oldImg) {
+          oldImg.remove()
+        }
+
         //agggiungiamo l'immagine precisa dall'index
         imgSrc = `<img class="mt-4 mb-4 col-12 col-lg-9" src="${imgSelect}" alt="">`
         overlayContentEl.insertAdjacentHTML('beforeend', imgSrc)
